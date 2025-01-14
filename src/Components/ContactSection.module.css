@@ -1,0 +1,56 @@
+.contactSection {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333; /* Dark text */
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 1.25rem;
+    color: #555; /* Subtle text */
+    margin-bottom: 30px;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputGroup {
+    text-align: left;
+}
+
+.inputGroup label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+.submitButton {
+    background-color: #007bff; /* Primary color */
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitButton:hover {
+    background-color: #0056b3; /* Darker primary color */
+}
