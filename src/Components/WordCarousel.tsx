@@ -10,8 +10,8 @@ const CarouselContainer = styled.div`carousel-container ${{
         overflow: "hidden",
         position: "relative",
         width: "100%",
-        padding: "10px 0",
-        margin: "20px"
+        padding: "10px",
+        margin: "20px 0px 20px 0px"
     }
 }}`.getReactComponent();
 

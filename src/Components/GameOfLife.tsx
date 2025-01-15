@@ -1,7 +1,50 @@
-import { classy } from "@javierayala381/aurora-components";
-import React, { useCallback } from "react";
+import { classy, styled } from "@javierayala381/aurora-components";
+import React from "react";
 import { useEffect, useRef } from "react";
 import { useOnce } from "@javierayala381/aurora-components/dist/Api/stateApi"
+import { RxQuestionMarkCircled } from "react-icons/rx";
+import { CiPlay1, CiStop1 } from "react-icons/ci";
+import { GrPowerReset } from "react-icons/gr";
+import { MdOutlineNavigateNext } from "react-icons/md";
+
+const GameContainer = styled.div`game-container ${{
+  default: {
+    margin: "0 50px 0 50px",
+    "& svg": {
+      width: "20px",
+      height: "20px"
+    }
+  }
+}}`.getReactComponent()
+
+const GameBarContainer = styled.div`about-the-game ${{
+  default: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: "15px",
+    width: "280px", // Set a fixed width for consistency
+    margin: "0 auto",
+    height: "10px",
+    justifyContent: "space-around"
+  }
+}}`.getReactComponent()
+
+const IconContainer = styled.div`icon-container ${{
+  default: {
+    display: "inline-flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "90px",
+    gap: "7px",
+    "& svg": {
+      backgroundColor: "#e4e4e4",
+      borderRadius: "5px",
+      padding: "5px",
+      cursor: "pointer"
+    }
+  }
+}}`.getReactComponent()
 
 const WIDTH = 300;
 const HEIGHT = 300;
@@ -109,30 +152,7 @@ export const GameOfLife =  classy.state.component`conway's-game-of-life`
   }, [boardState, canvasRef]);
 
   return (
-    <div id={id} style={{ margin: "0 50px 0 50px"}}>
-      <h1 className="text-3xl text-center font-mono mt-4">Game of Life</h1>
-
-      <div className="flex justify-center flex-col items-center">
-        <div className="flex space-x-3">
-          <button
-            className="py-4"
-            onClick={ logic.computeNextBoardSeeds }
-          >
-            Next
-          </button>
-          <button
-            className="py-4"
-            onClick={ logic.resetBoard }
-          >
-            Reset
-          </button>
-          <button
-            className="py-4"
-            onClick={() => react.dispatch("isPlaying",!isPlaying)}
-          >
-            {isPlaying ? "Stop" : "Play"}
-          </button>
-        </div>
+    <GameContainer id={id}>
         <canvas
           onClick={(e) => {
             const x = Math.floor(e.nativeEvent.offsetX / CELL_SIZE);
@@ -150,8 +170,34 @@ export const GameOfLife =  classy.state.component`conway's-game-of-life`
           width={WIDTH}
           height={HEIGHT}
           className="bg-gray-900"
-        ></canvas>
-      </div>
-    </div>
+        >
+
+        </canvas>
+        <GameBarContainer>
+          <RxQuestionMarkCircled />
+          <h1 className="text-3xl text-center font-mono mt-4">Game of Life</h1>
+          <div className="flex justify-center flex-col items-center">
+            <IconContainer className="flex space-x-3">
+              <MdOutlineNavigateNext
+                className="py-4"
+                onClick={ logic.computeNextBoardSeeds }
+              />
+              <GrPowerReset
+                className="py-4"
+                onClick={ logic.resetBoard }
+              />
+              { isPlaying ? 
+                <CiStop1 
+                  className="py-4"
+                  onClick={() => react.dispatch("isPlaying",!isPlaying)}
+                /> : 
+                <CiPlay1 
+                  className="py-4"
+                  onClick={() => react.dispatch("isPlaying",!isPlaying)}
+                /> }
+            </IconContainer>
+          </div>
+        </GameBarContainer>
+    </GameContainer>
   );
 }).getReactComponent()

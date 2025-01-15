@@ -97,8 +97,8 @@ export const Header = classy.state.component`Header`
                 { react.state.isOpen && (
                     <Nav>
                         <HeadEntry href="#about">About</HeadEntry>
-                        <HeadEntry href="#projects">Projects</HeadEntry>
                         <HeadEntry href="#skills">Skills</HeadEntry>
+                        <HeadEntry href="#projects">Projects</HeadEntry>
                     </Nav> 
                 )}
             </Container>

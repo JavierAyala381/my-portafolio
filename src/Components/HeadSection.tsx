@@ -5,7 +5,7 @@ import { ShufflingText } from "./ShufflingText.tsx";
 const BallsCluster = styled.div`balls-cluster ${{
     default: {
         position: "relative",
-        width: "100vw",
+        width: "100%",
         height: "85vh", //get all the rest of the visible screen
         display: "flex",
         justifyContent: "center",
