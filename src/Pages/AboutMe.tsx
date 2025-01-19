@@ -38,7 +38,7 @@ export const AboutMe = classy.component`about-me-section`
     .from(( { id }) => {
         return (
             <DivContainer id={id}>
-                <AboutLetter src="/images/a.png"></AboutLetter>
+                <AboutLetter src="images/a.png"></AboutLetter>
                 <ShufflingText as={Description} 
                     text={`
                     I am a Robotics Engineer and IT enthusiast with a deep passion for mathematics, physics, and cutting-edge

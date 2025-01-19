@@ -55,7 +55,7 @@ const ContactSection = classy.state.component`contact`
     };
 
     return (
-        <section style={{ backgroundColor: "white", marginTop: "20px",padding: "20px"}}>
+        <section style={{ backgroundColor: "white", marginTop: "20px", padding: "20px"}}>
             <UsefulLinks>
                 <Link 
                     href="https://www.linkedin.com/in/javier-ayala-oropeza-345225210/"
@@ -67,7 +67,11 @@ const ContactSection = classy.state.component`contact`
                     target="_blank"
                     rel="noopener noreferrer"
                 >GitHub</Link>
-                <Link>Read.CV</Link>
+                <Link
+                    href="https://drive.google.com/file/d/1ldRIpi0le5BlEuHT4IH2CAi7H2kDqcFO/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Read.CV</Link>
                 <Link
                     href="https://www.credly.com/users/javier-ayala-oropeza.508452d6"
                     target="_blank"

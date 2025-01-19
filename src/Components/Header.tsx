@@ -79,6 +79,9 @@ const PageName = styled.h1`page-name ${{
 
 const Nav = styled.nav`navigation ${{
     default: {
+        display: "inline-flex",
+        flexDirection: "row",
+        gap: "10px",
         margin: "0px 10px 0 10px"
     }
 }}`.getReactComponent()

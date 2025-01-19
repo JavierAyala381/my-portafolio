@@ -70,12 +70,13 @@ const CardDescription = styled.span`card-description ${{
     }
 }}`.getReactComponent();
 
-const DescriptionContainer = styled.div`container ${{
+const DescriptionContainer = styled.div`description-container ${{
     default: {
+        width: "100%",
+        height: "100%",
         display: "inline-flex",
         flexDirection: "column",
-        padding: "20px",
-        overflow: "scroll"
+        overflow: "scroll",
     }
 }}`.getReactComponent()
 
@@ -84,11 +85,12 @@ interface ICard {
     date: string,
     description: string,
     src: string,
-    altText: string
+    altText: string,
+    details?: any
 }
 
 const Card = classy.state.component<ICard>`card-component`
-    .from(({ name, date, description, src, altText }) => {
+    .from(({ name, date, description, src, altText, details }) => {
         return (
             <CardContainer>
                 {/** this part shoes a prev of the job experience*/}
@@ -99,6 +101,7 @@ const Card = classy.state.component<ICard>`card-component`
                     <CardDate>{date}</CardDate>
                     <CardDescription>
                         {description}
+                        {details}
                     </CardDescription>
                 </DescriptionContainer>
             </CardContainer>
@@ -147,7 +150,10 @@ const experience: ICard[] = [
             The refined design approach has led to increased user satisfaction, reduced friction in the user journey, and improved product engagement metrics.
             The collaboration with the development team ensured seamless design implementation, contributing to a more cohesive and professional digital experience.`,
         src: "images/MindCapital.png",
-        altText: "Mind Capital Logo"
+        altText: "Mind Capital Logo",
+        details: <>
+            <img src="images/MindCapitalMainPage.png"></img>
+        </>
     },
     {
         name: "STEAM Professor",
@@ -158,6 +164,16 @@ const experience: ICard[] = [
             explore, question, and innovate.`,
         src: "images/Amerike.png",
         altText: "Amerike University logo"
+    },
+    {
+        name: "Project Manager NEXT-U Education",
+        date: "February 2023 - August 2024",
+        description: `Led and managed a web development course, overseeing the coordination of classes and development
+        of the curriculum. Responsibilities included creating the educational plan, designing assessments, and ensuring seamless execution 
+        of the program. Worked closely with instructors and students to ensure effective learning outcomes and the successful completion of the course."
+        This version highlights the leadership, strategic planning, and collaboration involved, making it sound more polished and professional`,
+        src: "images/NextU.png",
+        altText: "NextU Education"
     },
     {
         name: "Project Manager",
@@ -185,7 +201,31 @@ const experience: ICard[] = [
             tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
             and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
         src: "images/ManchesterRobotics.png",
-        altText: "Manchester Robotics logo"
+        altText: "Manchester Robotics logo",
+        details: (
+            <>
+            <div>Give it a look</div>
+            <iframe src="https://drive.google.com/file/d/1d1wYL7YU8aDuPmtEMTO5uE1XCH85C7G1/preview" width="640" height="480" allow="autoplay"></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z_kojX7WbAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </>
+        )
+    },
+    {
+        name: "Intelligent robotics implementation",
+        date: "January 2023 - June 2023",
+        description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
+        tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
+        and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
+        src: "images/ManchesterRobotics.png",
+        altText: "Manchester Robotics logo",
+        details: (
+            <>
+            <div>Give it a look</div>
+            <iframe src="https://drive.google.com/file/d/17yuFudiAKPRaKJtxOYWRzuk4IvgSPYCY/preview" width="640" height="480" allow="autoplay"></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/JjEkFdsoqdk?si=a7hPN81y3rKfR-Lp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZyDoD3CJKcM?si=LFZ74u3tt7fTAor2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </>
+        )
     },
     {
         name: "Infotainment System Design",
@@ -194,7 +234,10 @@ const experience: ICard[] = [
             and microprocessors. The project was presented effectively to Intel and was selected to represent Mexico City on a
             national level.`,
         src: "images/Intel.png",
-        altText: "Intel logo"
+        altText: "Intel logo",
+        details: <>
+            <iframe src="https://drive.google.com/file/d/1Odtt3lV4vJnmTOb7Yc_hTkK2khG9SpaZ/preview" width="640" height="480" allow="autoplay"></iframe>
+        </>
     },
     {
         name: "Smart City Project",
@@ -203,7 +246,10 @@ const experience: ICard[] = [
             for real-time climate data acquisition. This project involved designing an original network architecture and
             integrating sensors and actuators for home automation.`,
         src: "images/Cisco.png",
-        altText: "Cisco logo"
+        altText: "Cisco logo",
+        details: <>
+        <iframe src="https://drive.google.com/file/d/1T0vO7cwblnvc33QOVw7l7SaqiWyGP4_w/preview" width="640" height="480" allow="autoplay"></iframe>
+        </>
     }
 ];
 

@@ -13,7 +13,7 @@ const Main = classy.state.component`layout-component`
     .from(()=>{
         return(
             <>
-            {/*<TwoSpheresBackground></TwoSpheresBackground>*/}
+            <TwoSpheresBackground></TwoSpheresBackground>
             <Header></Header>
             <HeadSection></HeadSection>
             <Section title={"About Me"} sectionId='about'>
