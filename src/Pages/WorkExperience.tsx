@@ -92,7 +92,7 @@ const Card = classy.state.component<ICard>`card-component`
         return (
             <CardContainer>
                 {/** this part shoes a prev of the job experience*/}
-                <CardImage src={src} alt={altText}/>
+                <CardImage src={ src } alt={altText}/>
                 {/**this is hidden until hover */}
                 <DescriptionContainer>
                     <CardTitle>{name}</CardTitle>
@@ -146,7 +146,7 @@ const experience: ICard[] = [
             teams to ensure design consistency across all digital products, while incorporating feedback to iteratively improve the interfaces. 
             The refined design approach has led to increased user satisfaction, reduced friction in the user journey, and improved product engagement metrics.
             The collaboration with the development team ensured seamless design implementation, contributing to a more cohesive and professional digital experience.`,
-        src: "/images/MindCapital.png",
+        src: "images/MindCapital.png",
         altText: "Mind Capital Logo"
     },
     {
@@ -156,7 +156,7 @@ const experience: ICard[] = [
             focused on Science, Technology, Engineering, Arts, and Mathematics (STEAM). In this role, I have been dedicated
             to creating an engaging and intellectually stimulating learning environment where students are encouraged to
             explore, question, and innovate.`,
-        src: "/images/Amerike.png",
+        src: "images/Amerike.png",
         altText: "Amerike University logo"
     },
     {
@@ -166,7 +166,7 @@ const experience: ICard[] = [
             of a platform that revolutionized the management of healthcare data and streamlined health facility administration.
             With the help of technologies like .NET, MongoDB, and computer vision, I ensured client satisfaction through effective
             client management and communication.`,
-        src: "/images/Aurora.png",
+        src: "images/Aurora.png",
         altText: "Aurora Software logo"
     },
     {
@@ -175,7 +175,7 @@ const experience: ICard[] = [
         description: `As a QA intern at CTIN, I managed the lifecycle of the music streaming platform Claro Música.
             This involved executing test cases, documenting results, and diligently tracking defects to resolution, while also
             gaining experience in DB management and API testing.`,
-        src: "/images/Claro.png",
+        src: "images/Claro.png",
         altText: "CTIN logo"
     },
     {
@@ -184,7 +184,7 @@ const experience: ICard[] = [
         description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
             tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
             and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
-        src: "/images/ManchesterRobotics.png",
+        src: "images/ManchesterRobotics.png",
         altText: "Manchester Robotics logo"
     },
     {
@@ -193,7 +193,7 @@ const experience: ICard[] = [
         description: `I designed and tested a digital music and audiovisual content system on an FPGA using microcontrollers
             and microprocessors. The project was presented effectively to Intel and was selected to represent Mexico City on a
             national level.`,
-        src: "/images/Intel.png",
+        src: "images/Intel.png",
         altText: "Intel logo"
     },
     {
@@ -202,7 +202,7 @@ const experience: ICard[] = [
         description: `I developed a smart city system using microcontrollers connected to a cloud-based data hosting service
             for real-time climate data acquisition. This project involved designing an original network architecture and
             integrating sensors and actuators for home automation.`,
-        src: "/images/Cisco.png",
+        src: "images/Cisco.png",
         altText: "Cisco logo"
     }
 ];
