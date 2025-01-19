@@ -29,8 +29,8 @@ Some of the skills I bring to the table include:
 
 I’m always open to new opportunities, collaborations, and discussions. Feel free to reach out to me through:
 
-- **LinkedIn**: [Your LinkedIn Profile Link]
-- **Email**: [Your Email Address]
+- **LinkedIn**: www.linkedin.com/in/javier-ayala-oropeza-345225210
+- **Email**: ayalajavier381@gmail.com
 
 ## Installation
 
