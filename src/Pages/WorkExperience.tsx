@@ -124,7 +124,7 @@ const experience: ICard[] = [
             Utilizing Java development expertise, I created powerful software solutions that facilitated seamless data accessibility
             for various applications. Furthermore, my proficiency in managing multiple data sources enabled me to integrate
             them into cohesive systems.`,
-        src: "/images/Wolfram.png",
+        src: "images/Wolfram.png",
         altText: "Wolfram logo"
     },
     {
@@ -134,7 +134,7 @@ const experience: ICard[] = [
             create and optimize ETL pipelines and procedures. I’ve been instrumental in designing cloud architectures tailored to
             facilitate the smooth migration of processes into the cloud environment, ensuring scalability, resilience, and adherence to
             best practices and security standards.`,
-        src: "/images/HSBC.png",
+        src: "images/HSBC.png",
         altText: "HSBC logo"
     },
     {
