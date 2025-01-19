@@ -7,7 +7,7 @@ const UsefulLinks = styled.div`useful-links ${{
     default: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
     }
 }}`.getReactComponent()
 
@@ -36,7 +36,6 @@ const FooterText = styled.span`footer-text ${{
         }
     }}`.getReactComponent();
 
-
 const defaultEmail = {
     name: '',
     email: '',
@@ -56,7 +55,7 @@ const ContactSection = classy.state.component`contact`
     };
 
     return (
-        <section id={id} className={styles.contactSection}>
+        <section style={{ backgroundColor: "white", marginTop: "20px",padding: "20px"}}>
             <UsefulLinks>
                 <Link 
                     href="https://www.linkedin.com/in/javier-ayala-oropeza-345225210/"

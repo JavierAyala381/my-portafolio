@@ -7,11 +7,13 @@ import ContactSection from '../Components/Contact.tsx';
 import { WorkExperience } from './WorkExperience.tsx';
 import { AboutMe } from './AboutMe.tsx';
 import { ToolsSkills } from './ToolsSkills.tsx';
+import TwoSpheresBackground from '../Components/Test.tsx';
 
 const Main = classy.state.component`layout-component`
     .from(()=>{
         return(
             <>
+            {/*<TwoSpheresBackground></TwoSpheresBackground>*/}
             <Header></Header>
             <HeadSection></HeadSection>
             <Section title={"About Me"} sectionId='about'>

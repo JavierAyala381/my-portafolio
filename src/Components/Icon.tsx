@@ -27,6 +27,7 @@ const SkillIcon = styled.img`skill-icon ${{
         objectFit: "contain",
         margin: "20px",
         borderRadius: "50%",
+        backgroundColor: "white",
         boxShadow: "0px 10px 30px rgba(0,0,0,0.3)",
         animation: `${floatAnimation} 5s ease-in-out infinite`,
         transition: "transform 0.5s ease-in-out, filter 0.5s ease-in-out",

@@ -88,7 +88,7 @@ const Sec = styled.section`section ${{
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        margin: "0 20px 0 20px"
+        margin: "0 20px 0 20px",
     }
 }}`.getReactComponent()
 

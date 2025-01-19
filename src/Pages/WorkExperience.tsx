@@ -6,17 +6,25 @@ const CardContainer = styled.div`card-container ${{
         position: "relative",
         display: "flex",
         flexDirection: "row",
+        justifyContent: "center", // Center the card's content
+        alignItems: "center", // Vertically center content inside the card
         width: "350px",  // Default width
         height: "500px",
-        borderRadius: "10px",
-        boxShadow: "#e7e7e7 6px 4px 20px 0px",
+        borderRadius: "12px", // Slightly larger radius for more elegance
+        boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)", // Softer shadow for a more modern look
         overflow: "hidden", 
-        transition: "transform 0.3s ease-in-out, width 0.3s ease-in-out",
+        backgroundColor: "white",
+        transition: "transform 0.3s ease-in-out, width 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
         transformOrigin: "center", // Expand centered without shifting
+        backdropFilter: "blur(8px)", // Adds a soft blur effect when hovered
+        zIndex: 1, // Ensure the card stays above other elements
+
         "&:hover": {
-            transform: "scale(1.05)", 
-            width: "850px"
-        }
+            transform: "scale(1.05)", // Slightly enlarge on hover
+            width: "850px", // Increase width on hover
+            boxShadow: "0 12px 40px rgba(0, 0, 0, 0.2)", // Larger shadow on hover for emphasis
+            backdropFilter: "blur(12px)", // Intensify blur on hover for better effect
+        },
     }
 }}`.getReactComponent()
 
@@ -25,7 +33,10 @@ const CardImage = styled.img`card-img ${{
         width: "350px",
         height: "100%",
         objectFit: "contain", // or use "contain" if you want the entire image visible without cropping
-        scale: 0.8
+        scale: 0.8,
+        background: "transparent", // Removes any background from the image
+        borderRadius: "8px", // Slight rounding for aesthetics if you like
+        boxShadow: "none", // Removes any default shadow from the image
     }
 }}`.getReactComponent()
 
