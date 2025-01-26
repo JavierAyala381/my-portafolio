@@ -2,7 +2,6 @@ import { classy, styled } from "@javierayala381/aurora-components";
 import React from "react";
 import { ParallaxProvider, Parallax } from 'react-scroll-parallax';
 import { keyframes } from "@emotion/css";
-import { WordCarousel } from "./WordCarousel.tsx";
 import { ShufflingText } from "./ShufflingText.tsx";
 
 // Floating and rotation animation for the icons
@@ -22,8 +21,8 @@ const gradientAnimation = keyframes`
 // Styled component for individual icons with animation and hover effects
 const SkillIcon = styled.img`skill-icon ${{
     default: {
-        width: "120px",
-        height: "120px",
+        width: "clamp(80px, 10vw, 120px)", // Dynamically scale width
+        height: "clamp(80px, 10vw, 120px)", // Dynamically scale height
         objectFit: "contain",
         margin: "20px",
         borderRadius: "50%",
@@ -46,11 +45,11 @@ const SkillShowcaseContainer = styled.div`skill-showcase ${{
         justifyContent: "center",
         alignItems: "center",
         gap: "50px",
-        padding: "100px 20px",
-        height: "150vh", // Adjusted height for scrolling effect
+        padding: "10px 20px",
+        height: "clamp(max-content, 10vh, 100vh)", // Dynamically adjusts based on content
+        minHeight: "140vh",
         backgroundSize: "300% 300%",
         animation: `${gradientAnimation} 10s ease infinite`,
-        overflow: "hidden",
         position: "relative", // Add relative positioning for absolute elements inside
     }
 }}`.getReactComponent();
@@ -60,9 +59,9 @@ const skills = [
     { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
     { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
     { name: "Java", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
-    { name: "Qiskit", icon: "images/Qiskit.svg" },
-    { name: "Quask", icon: "images/Quask.png" },
-    { name: "Wolfram", icon: "images/Wolfram.png"},
+    { name: "Qiskit", icon: "http://localhost:3000/my-portafolio/images/Qiskit.svg" },
+    { name: "Quask", icon: "http://localhost:3000/my-portafolio/images/Quask.png" },
+    { name: "Wolfram", icon: "http://localhost:3000/my-portafolio/images/Wolfram.png"},
     { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"},
     { name: "Javascript ", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
     { name: "Dotnet", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"},
@@ -86,27 +85,37 @@ const skills = [
 // Styled text for positioning over the icons
 const Text1 = styled.h1`floating-text ${{
     default: {
-        fontSize: "280px",
+        fontSize: "clamp(90px, 10vw, 280px)",
         position: "absolute", // Absolute positioning
-        top: "20%", // Position in the middle vertically
-        left: "5%", // Adjust horizontally as needed
+        top: "clamp(20%, 20vh, 30%)", // Dynamically compute top position
+        left: "clamp(2%, 5vw, 10%)", // Dynamically compute left position
         zIndex: 5, // Ensure text is on top of icons but not blocking movement
         transform: "translateY(-50%)", // Center text vertically within container
         fontWeight: "bold",
         textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)", // Add some shadow for better visibility
+        backgroundColor: "rgba(255, 255, 255, 0.2)", // Semi-transparent background
+        backdropFilter: "blur(3px)", // Blur effect for the glass effect
+        padding: "10px 20px", // Add padding around the text for better readability
+        borderRadius: "10px", // Rounded corners for the glass effect
+        textAlign: "center", // Center align text for aesthetic purposes
     }
 }}`.getReactComponent();
 
 const Text2 = styled.h1`floating-text ${{
     default: {
-        fontSize: "280px",
+        fontSize: "clamp(90px, 10vw, 280px)",
         position: "absolute", // Absolute positioning
-        top: "50%", // Position in the middle vertically
-        left: "65%", // Adjust horizontally as needed
+        top: "clamp(45%, 50%, 55%)", // Dynamically adjust vertical position
+        right: "clamp(2%, 5vw, 70%)", // Dynamically adjust horizontal position
         zIndex: 10, // Ensure text is on top of icons
         transform: "translateY(-50%)", // Center text vertically within container
         fontWeight: "bold",
         textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)", // Add some shadow for better visibility
+        backgroundColor: "rgba(255, 255, 255, 0.2)", // Semi-transparent background
+        backdropFilter: "blur(3px)", // Blur effect for the glass effect
+        padding: "10px 20px", // Add padding around the text for better readability
+        borderRadius: "10px", // Rounded corners for the glass effect
+        textAlign: "center", // Center align text for aesthetic purposes
     }
 }}`.getReactComponent();
 
@@ -124,12 +133,22 @@ export const Icon = classy.state.component`skill-showcase`
                         as={Text2}
                         text="Skills"/>
                     {skills.map((skill, index) => (
+                        <div style={{
+                            display: "flex", // If the divs are side by side
+                            flexDirection: "column", // Or "row" depending on layout
+                            alignItems: "center", // Align items horizontally in the center
+                            justifyContent: "space-between", // Spread items evenly
+                            gap: "20px", // Add spacing between child elements
+                            margin: "20px 0", // Add vertical spacing between divs
+                            padding: "10px", // Optional: Add inner spacing for each div
+                        }}>
                         <Parallax key={index} speed={Math.random() * 40 - 20} rotate={[-20, 20]}>
                             { skill.name !== "Quask" ? 
                                 <SkillIcon src={skill.icon} alt={skill.name} /> :
                                 <SkillIcon src={skill.icon} alt={skill.name} style={{ backgroundColor: "black"}}/>
                             }
                         </Parallax>
+                        </div>
                     ))}
                 </SkillShowcaseContainer>
             </ParallaxProvider>

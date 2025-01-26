@@ -1,5 +1,7 @@
 import { classy, styled } from "@javierayala381/aurora-components";
 import React from "react";
+import { keyframes } from "@emotion/css";
+import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 const CardContainer = styled.div`card-container ${{
     default: {
@@ -18,13 +20,32 @@ const CardContainer = styled.div`card-container ${{
         transformOrigin: "center", // Expand centered without shifting
         backdropFilter: "blur(8px)", // Adds a soft blur effect when hovered
         zIndex: 1, // Ensure the card stays above other elements
-
         "&:hover": {
             transform: "scale(1.05)", // Slightly enlarge on hover
             width: "850px", // Increase width on hover
             boxShadow: "0 12px 40px rgba(0, 0, 0, 0.2)", // Larger shadow on hover for emphasis
             backdropFilter: "blur(12px)", // Intensify blur on hover for better effect
         },
+        "@media (max-width: 1500px)": {
+            gap: "20px",
+            flexDirection: "row", // Reduce font size for mobile
+            width: "100%"
+        },
+        "@media (max-width: 768px)": {
+            flexDirection: "column", // Stack content vertically for smaller screens
+            width: "100%", // Make width responsive
+            height: "auto", // Adjust height dynamically
+            transform: "none", // Remove hover transform
+            boxShadow: "0 6px 20px rgba(0, 0, 0, 0.1)", // Use default shadow
+            backdropFilter: "none", // Remove blur effects
+            // @ts-expect-error
+            "&:hover": {
+                transform: "none", // Disable hover effects entirely
+                width: "100%", // Ensure it doesn’t resize
+                boxShadow: "none", // Ignore hover shadow
+                backdropFilter: "none", // Ignore hover blur
+            }
+        }
     }
 }}`.getReactComponent()
 
@@ -72,11 +93,11 @@ const CardDescription = styled.span`card-description ${{
 
 const DescriptionContainer = styled.div`description-container ${{
     default: {
-        width: "100%",
         height: "100%",
         display: "inline-flex",
         flexDirection: "column",
         overflow: "scroll",
+        padding: "20px"
     }
 }}`.getReactComponent()
 
@@ -94,7 +115,9 @@ const Card = classy.state.component<ICard>`card-component`
         return (
             <CardContainer>
                 {/** this part shoes a prev of the job experience*/}
-                <CardImage src={ src } alt={altText}/>
+                <div>
+                    <CardImage src={ src } alt={altText}/>
+                </div>
                 {/**this is hidden until hover */}
                 <DescriptionContainer>
                     <CardTitle>{name}</CardTitle>
@@ -113,7 +136,11 @@ const CardCarousel = styled.div`carousel ${{
         display: "inline-flex",
         flexDirection: "row",     
         justifyContent: "space-around",
-        margin: "20px 10px 20px 10px"
+        margin: "20px 10px 20px 10px",
+        "@media (max-width: 1500px)": {
+            gap: "20px",
+            flexDirection: "column", // Reduce font size for mobile
+        }
     }
 }}`.getReactComponent()
 
@@ -127,7 +154,7 @@ const experience: ICard[] = [
             Utilizing Java development expertise, I created powerful software solutions that facilitated seamless data accessibility
             for various applications. Furthermore, my proficiency in managing multiple data sources enabled me to integrate
             them into cohesive systems.`,
-        src: "images/Wolfram.png",
+        src: "http://localhost:3000/my-portafolio/images/Wolfram.png",
         altText: "Wolfram logo"
     },
     {
@@ -137,7 +164,7 @@ const experience: ICard[] = [
             create and optimize ETL pipelines and procedures. I’ve been instrumental in designing cloud architectures tailored to
             facilitate the smooth migration of processes into the cloud environment, ensuring scalability, resilience, and adherence to
             best practices and security standards.`,
-        src: "images/HSBC.png",
+        src: "http://localhost:3000/my-portafolio/images/HSBC.png",
         altText: "HSBC logo"
     },
     {
@@ -149,7 +176,7 @@ const experience: ICard[] = [
             teams to ensure design consistency across all digital products, while incorporating feedback to iteratively improve the interfaces. 
             The refined design approach has led to increased user satisfaction, reduced friction in the user journey, and improved product engagement metrics.
             The collaboration with the development team ensured seamless design implementation, contributing to a more cohesive and professional digital experience.`,
-        src: "images/MindCapital.png",
+        src: "http://localhost:3000/my-portafolio/images/MindCapital.png",
         altText: "Mind Capital Logo",
         details: <>
             <img src="images/MindCapitalMainPage.png"></img>
@@ -162,7 +189,7 @@ const experience: ICard[] = [
             focused on Science, Technology, Engineering, Arts, and Mathematics (STEAM). In this role, I have been dedicated
             to creating an engaging and intellectually stimulating learning environment where students are encouraged to
             explore, question, and innovate.`,
-        src: "images/Amerike.png",
+        src: "http://localhost:3000/my-portafolio/images/Amerike.png",
         altText: "Amerike University logo"
     },
     {
@@ -172,7 +199,7 @@ const experience: ICard[] = [
         of the curriculum. Responsibilities included creating the educational plan, designing assessments, and ensuring seamless execution 
         of the program. Worked closely with instructors and students to ensure effective learning outcomes and the successful completion of the course."
         This version highlights the leadership, strategic planning, and collaboration involved, making it sound more polished and professional`,
-        src: "images/NextU.png",
+        src: "http://localhost:3000/my-portafolio/images/NextU.png",
         altText: "NextU Education"
     },
     {
@@ -182,7 +209,7 @@ const experience: ICard[] = [
             of a platform that revolutionized the management of healthcare data and streamlined health facility administration.
             With the help of technologies like .NET, MongoDB, and computer vision, I ensured client satisfaction through effective
             client management and communication.`,
-        src: "images/Aurora.png",
+        src: "http://localhost:3000/my-portafolio/images/Aurora.png",
         altText: "Aurora Software logo"
     },
     {
@@ -191,7 +218,7 @@ const experience: ICard[] = [
         description: `As a QA intern at CTIN, I managed the lifecycle of the music streaming platform Claro Música.
             This involved executing test cases, documenting results, and diligently tracking defects to resolution, while also
             gaining experience in DB management and API testing.`,
-        src: "images/Claro.png",
+        src: "http://localhost:3000/my-portafolio/images/Claro.png",
         altText: "CTIN logo"
     },
     {
@@ -200,7 +227,7 @@ const experience: ICard[] = [
         description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
             tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
             and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
-        src: "images/ManchesterRobotics.png",
+        src: "http://localhost:3000/my-portafolio/images/ManchesterRobotics.png",
         altText: "Manchester Robotics logo",
         details: (
             <>
@@ -216,7 +243,7 @@ const experience: ICard[] = [
         description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
         tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
         and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
-        src: "images/ManchesterRobotics.png",
+        src: "http://localhost:3000/my-portafolio/images/ManchesterRobotics.png",
         altText: "Manchester Robotics logo",
         details: (
             <>
@@ -233,7 +260,7 @@ const experience: ICard[] = [
         description: `I designed and tested a digital music and audiovisual content system on an FPGA using microcontrollers
             and microprocessors. The project was presented effectively to Intel and was selected to represent Mexico City on a
             national level.`,
-        src: "images/Intel.png",
+        src: "http://localhost:3000/my-portafolio/images/Intel.png",
         altText: "Intel logo",
         details: <>
             <iframe src="https://drive.google.com/file/d/1Odtt3lV4vJnmTOb7Yc_hTkK2khG9SpaZ/preview" width="640" height="480" allow="autoplay"></iframe>
@@ -245,13 +272,40 @@ const experience: ICard[] = [
         description: `I developed a smart city system using microcontrollers connected to a cloud-based data hosting service
             for real-time climate data acquisition. This project involved designing an original network architecture and
             integrating sensors and actuators for home automation.`,
-        src: "images/Cisco.png",
+        src: "http://localhost:3000/my-portafolio/images/Cisco.png",
         altText: "Cisco logo",
         details: <>
         <iframe src="https://drive.google.com/file/d/1T0vO7cwblnvc33QOVw7l7SaqiWyGP4_w/preview" width="640" height="480" allow="autoplay"></iframe>
         </>
+    }, 
+    {
+        name: "Teacher Assistant Trinity College",
+        date: "January 2025 - ?",
+        description: `
+        I worked as a Teacher Assistant for Geometry and Group Theory courses at Trinity College. 
+        My responsibilities included conducting tutorials to help students grasp complex mathematical concepts, 
+        grading assignments and exams to ensure fair and consistent evaluation, 
+        and providing one-on-one support to students seeking additional help with the coursework. 
+        I also assisted in organizing course materials and contributed to creating a collaborative and engaging learning environment.
+    `,
+        src: "http://localhost:3000/my-portafolio/images/Trinity.png",
+        altText: "Trinity College"
     }
 ];
+
+const AnimatedText = styled.div`${{
+    default: {
+        top: "-85px",
+        fontSize: "500px",
+        fontFamily: "impact",
+        letterSpacing: "50px",
+        width: "100%",
+        height: "100%",
+        zIndex: 1,
+        position: "absolute",
+        fontWeight: "bold",
+    }
+}}`.getReactComponent()
 
 export const WorkExperience = classy.state.component`work-experience-section`
     .from(() => {
@@ -267,13 +321,23 @@ export const WorkExperience = classy.state.component`work-experience-section`
     // Render multiple CardCarousels with 4 cards each
     const cardChunks = chunkArray(experience, 3);
     
-    return (
-        <>
+    return (<>
+        <ParallaxProvider>
+            <Parallax 
+                speed={-10}
+                scale={[15, 0.5, 'easeOut']} // Start text 20x its size and scale down to normal size
+                style={{ position: "relative" }}
+            >
+            <AnimatedText>
+                SCIENCE IS A GREAT RABBIT HOLE TO GO DOWN
+            </AnimatedText>
+            </Parallax>
+        </ParallaxProvider>
         {cardChunks.map((chunk, index) => (
             <CardCarousel key={index}>
-            {chunk.map((e, idx) => (
-                <Card key={idx} {...e} />
-            ))}
+                {chunk.map((e, idx) => (
+                    <Card key={idx} {...e} />
+                ))}
             </CardCarousel>
         ))}
         </>

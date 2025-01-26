@@ -10,7 +10,7 @@ const BallsCluster = styled.div`balls-cluster ${{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        overflow: "hidden", // Prevents balls from moving out of view
+        overflow: "hidden" // Prevents balls from moving out of view
     }
 }}`.getReactComponent();
 
@@ -61,10 +61,11 @@ const cluster = (numBalls, minSize, maxSize, spread) => {
         <Ball 
             key={index} 
             style={{
-                width: `${data.size}px`,
-                height: `${data.size}px`,
-                left: `calc(50% + ${data.x}px)`, // Positioning ball from the center (horizontally)
-                top: `calc(50% + ${data.y}px)`  // Positioning ball from the center (vertically)
+                width: `clamp(20px, ${data.size / 10}vw, ${data.size}px)`, // Dynamically adjust size based on screen width
+                height: `clamp(20px, ${data.size / 10}vw, ${data.size}px)`, // Match height to width
+                left: `calc(50% + ${data.x}px)`, // Positioning from the center horizontally
+                top: `calc(50% + ${data.y}px)`, // Positioning from the center vertically
+                transform: "translate(-50%, -50%)", // Center ball exactly at the calculated position
             }} 
         />
     ));
@@ -75,21 +76,21 @@ const cluster = (numBalls, minSize, maxSize, spread) => {
 const Header = styled.h1`name-holder ${{
     default: {
         position: "relative",
-        fontSize: "200px",
+        fontSize: "clamp(70px, 10vw, 200px)",
         fontWeight: "bold",
         zIndex: "10",
-        margin: "0"
+        margin: "0",
     }
 }}`.getReactComponent()
 
 const SubHeader = styled.h2`sub-header ${{
     default: {
         position: "relative",
-        fontSize: "50px",
+        fontSize: "clamp(20px, 5vw, 50px)",
         fontWeight: "bold",
         zIndex: "10",
         margin: "0",
-        color: "#824ed5"
+        color: "#824ed5",
     }
 }}`.getReactComponent()
 
@@ -102,22 +103,23 @@ const HeadContainer = styled.div`container ${{
     }
 }}`.getReactComponent()
 
-export const HeadSection = classy.component`Head-Section`
-    .from(({ id }) => {
+export const HeadSection = classy.state.component`Head-Section`
+    .setStates({ clicks: 0 })
+    .from(({ id, react }) => {
         return (
-            <>
             <BallsCluster>
                 <HeadContainer>
                     <Header>Javier Ayala</Header>
                     <ShufflingText
                         as={SubHeader}
-                        text="Quantum-Mathematician-Robotics"
+                        text={ react.state.clicks < 3 ? "Quantum-Mathematician-Robotics" : "I love Mady <3"}
+                        onClick={()=> react.dispatch("clicks", (c) => c+1)}
                     />
                 </HeadContainer>
                 {cluster(80, 30, 80, 1.5)}
                 {cluster(70, 60, 100, 1.6)}
                 {cluster(50, 100, 150, 1.3)}
                 {cluster(10, 200, 250, 1)}
-            </BallsCluster></>
+            </BallsCluster>
         )
     }).getReactComponent()

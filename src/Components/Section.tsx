@@ -1,18 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { classy, styled } from "@javierayala381/aurora-components";
-import { keyframes } from "@emotion/css";
 
-const quantumGlow = keyframes`
-    0% { text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.9); opacity: 0.8; }
-    25% { text-shadow: 0px 0px 8px rgba(255, 255, 255, 1); opacity: 1; }
-    50% { text-shadow: 0px 0px 14px rgba(255, 255, 255, 0.9); opacity: 0.9; }
-    75% { text-shadow: 0px 0px 10px rgba(255, 255, 255, 1); opacity: 1; }
-    100% { text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.9); opacity: 0.8; }
-`;
 const SectionHeader = styled.h3`section-header ${{
     default: {
-        fontSize: "35px",                  // Same font size as PageName for consistency
-        fontWeight: "bold",                // Bold for emphasis, like PageName
+        fontSize: "clamp(25px, 10vw, 35px)", // Same font size as PageName for consistency
+        fontWeight: "bold",                  // Bold for emphasis, like PageName
         color: "#222",                     // Slightly darker gray for the text color to match the main header
         letterSpacing: "1px",              // Same spacing as in the main header for consistency
         lineHeight: "1.3",                  // Align line height with the main header
@@ -88,7 +80,7 @@ const Sec = styled.section`section ${{
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        margin: "0 20px 0 20px",
+        margin: "0 clamp(10px, 2vw, 20px) 0 clamp(10px, 2vw, 20px)"
     }
 }}`.getReactComponent()
 

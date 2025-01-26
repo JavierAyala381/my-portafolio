@@ -37,7 +37,7 @@ const CarouselItem = styled.div`carousel-item ${{
     default: {
         init: { default: { direction: "right"} },
         rule: (props) => ({
-            fontSize: "30px",
+            fontSize: "clamp(20px, 10vw, 30px)",
             fontWeight: "bold",
             padding: "10px 30px",
             animation: `${props.default.direction === "right" ? moveRight : moveLeft} 10s linear infinite`,

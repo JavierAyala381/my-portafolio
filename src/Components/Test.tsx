@@ -100,16 +100,18 @@ const TwoSpheresBackground = () => {
 
     return (
         <canvas
-        ref={canvasRef}
-        style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            zIndex: -1,
-            backgroundColor: 'white',
-        }}
+            id="ball-canvas"
+            key="ball-canvas"
+            ref={canvasRef}
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                zIndex: -1,
+                backgroundColor: 'white',
+            }}
         />
     );
     };
