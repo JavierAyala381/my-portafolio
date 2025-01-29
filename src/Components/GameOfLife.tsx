@@ -1140,7 +1140,7 @@ export const GameOfLife =  classy.state.component`conway's-game-of-life`
           <RxQuestionMarkCircled />
           <h1 className="text-3xl text-center font-mono mt-4">Game of Life</h1>
           <div className="flex justify-center flex-col items-center">
-            <IconContainer className="flex space-x-3">
+              <IconContainer className="flex space-x-3">
               <MdOutlineNavigateNext
                 className="py-4"
                 onClick={ logic.computeNextBoardSeeds }

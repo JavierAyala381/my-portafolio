@@ -72,7 +72,7 @@ const TwoSpheresBackground = () => {
         ctx.fill();
 
         // Increment the angle for rotation
-        angle += 0.006; // Changes the speed rotation
+        angle += 0.001; // Changes the speed rotation
 
         requestAnimationFrame(drawSpheres);
         };
@@ -111,6 +111,7 @@ const TwoSpheresBackground = () => {
                 height: '100%',
                 zIndex: -1,
                 backgroundColor: 'white',
+                filter: "blur(2px)"
             }}
         />
     );

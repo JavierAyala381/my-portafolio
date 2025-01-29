@@ -1,6 +1,5 @@
 import { classy, styled } from "@javierayala381/aurora-components";
 import React from "react";
-import { keyframes } from "@emotion/css";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
 
 const CardContainer = styled.div`card-container ${{
@@ -29,7 +28,14 @@ const CardContainer = styled.div`card-container ${{
         "@media (max-width: 1500px)": {
             gap: "20px",
             flexDirection: "row", // Reduce font size for mobile
-            width: "100%"
+            width: "100%",
+            // @ts-expect-error
+            "&:hover": {
+                transform: "none", // Disable hover effects entirely
+                width: "100%", // Ensure it doesn’t resize
+                boxShadow: "none", // Ignore hover shadow
+                backdropFilter: "none", // Ignore hover blur
+            }
         },
         "@media (max-width: 768px)": {
             flexDirection: "column", // Stack content vertically for smaller screens
@@ -110,14 +116,16 @@ interface ICard {
     details?: any
 }
 
+
 const Card = classy.state.component<ICard>`card-component`
     .from(({ name, date, description, src, altText, details }) => {
         return (
             <CardContainer>
                 {/** this part shoes a prev of the job experience*/}
                 <div>
-                    <CardImage src={ src } alt={altText}/>
+                    <CardImage src={src} alt={altText} />
                 </div>
+
                 {/**this is hidden until hover */}
                 <DescriptionContainer>
                     <CardTitle>{name}</CardTitle>
@@ -144,96 +152,111 @@ const CardCarousel = styled.div`carousel ${{
     }
 }}`.getReactComponent()
 
+const IFrame = styled.iframe`external-link ${{
+    default: {
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        scale: "0.9",
+        margin: "10px"
+    }
+}}`.getReactComponent()
+
+const Img = styled.img`styled-image ${{
+    default: {
+        position: "relative",
+        width: "100%",
+        margin: "10px",
+        scale: "0.9"
+    }
+}}`.getReactComponent()
 
 const experience: ICard[] = [
     {
         name: "Software and Database Developer",
         date: "April 2023 - Current",
-        description: `At Wolfram Research, I focus on optimizing queries for lightning-fast response times. Through the
-            use of cutting-edge technologies and methodologies, I honed my abilities in handling and analyzing large datasets.
-            Utilizing Java development expertise, I created powerful software solutions that facilitated seamless data accessibility
-            for various applications. Furthermore, my proficiency in managing multiple data sources enabled me to integrate
-            them into cohesive systems.`,
-        src: "http://localhost:3000/my-portafolio/images/Wolfram.png",
+        description: `Implemented features into the Wolfram language using both the language itself and Java. I oversee the development
+            lifecycle, from solution design and development to testing and integration. I have contributed as a full-stack
+            engineer, developing web servers, back-end architectures, and user-friendly interfaces (UI). I also manage databases,
+            integrating multiple data sources, building pipelines, and optimizing processes.`,
+        src: "images/Wolfram.png",
         altText: "Wolfram logo"
-    },
+    }, 
     {
         name: "Data Cloud Architect",
         date: "June 2023 - August 2024",
-        description: `As a Data Cloud Architect at HSBC, my role revolves around harnessing big data technologies to
-            create and optimize ETL pipelines and procedures. I’ve been instrumental in designing cloud architectures tailored to
-            facilitate the smooth migration of processes into the cloud environment, ensuring scalability, resilience, and adherence to
-            best practices and security standards.`,
-        src: "http://localhost:3000/my-portafolio/images/HSBC.png",
+        description: `Design, deploy and mange big data ETL pipelines and procedures in cloud environments. Collaborating closely
+        with cross-functional teams, I have achieved the implementation of scalable and resilient cloud architectures that
+        improve data accessibility, reliability, and performance for our clients.`,
+        src: "images/HSBC.png",
         altText: "HSBC logo"
     },
     {
-        name: "UI and UX Designer",
+        name: "Front-end Developer,",
         date: "October 2024 - Current",
-        description: `As a UI and UX Designer for Mind Capital, I have been responsible for conceptualizing and developing user-centered 
-            designs that enhance the overall user experience. My work involves creating wireframes, prototypes, and high-fidelity mockups, 
-            focusing on intuitive navigation, accessibility, and modern design principles. I have collaborated closely with development 
-            teams to ensure design consistency across all digital products, while incorporating feedback to iteratively improve the interfaces. 
-            The refined design approach has led to increased user satisfaction, reduced friction in the user journey, and improved product engagement metrics.
-            The collaboration with the development team ensured seamless design implementation, contributing to a more cohesive and professional digital experience.`,
-        src: "http://localhost:3000/my-portafolio/images/MindCapital.png",
+        description: `
+            Developed and optimized user-friendly web pages using React and other front-end technologies. Focused on
+            creating, intuitive interfaces that significantly enhanced the user experience. Collaborated with cross-functional
+            teams to implement responsive designs, improve site performance, and ensure accessibility across various devices
+            and platforms
+        `,
+        src: "images/MindCapital.png",
         altText: "Mind Capital Logo",
         details: <>
-            <img src="images/MindCapitalMainPage.png"></img>
+            <Img src="images/MindCapitalMainPage.png"></Img>
         </>
     },
     {
-        name: "STEAM Professor",
+        name: "Data science and Software professor",
         date: "February 2023 - August 2024",
-        description: `As a professor at Amerike University, I have had the privilege of designing and delivering courses
-            focused on Science, Technology, Engineering, Arts, and Mathematics (STEAM). In this role, I have been dedicated
-            to creating an engaging and intellectually stimulating learning environment where students are encouraged to
-            explore, question, and innovate.`,
-        src: "http://localhost:3000/my-portafolio/images/Amerike.png",
+        description: `Fostered an engaging learning environment, teaching Java, Python, C, and R with a focus on data analysis, AI,
+        and machine learning. Guided students in extracting insights from data and building intelligent systems to address
+        real-world challenges`,
+        src: "images/Amerike.png",
         altText: "Amerike University logo"
     },
     {
         name: "Project Manager NEXT-U Education",
         date: "February 2023 - August 2024",
-        description: `Led and managed a web development course, overseeing the coordination of classes and development
-        of the curriculum. Responsibilities included creating the educational plan, designing assessments, and ensuring seamless execution 
-        of the program. Worked closely with instructors and students to ensure effective learning outcomes and the successful completion of the course."
-        This version highlights the leadership, strategic planning, and collaboration involved, making it sound more polished and professional`,
-        src: "http://localhost:3000/my-portafolio/images/NextU.png",
+        description: `Developed and implemented an effective education plan for teaching web technologies, ensuring comprehensive
+        coverage of core concepts. Supervised instructors, designed course materials, created structured timelines, and
+        provided ongoing guidance to students.`,
+        src: "images/NextU.png",
         altText: "NextU Education"
     },
     {
-        name: "Project Manager",
+        name: "Project Manager - Aurora Software",
         date: "August 2021 - February 2023",
-        description: `As the Project Manager of Aurora, a software solution for the healthcare industry, I led the development
-            of a platform that revolutionized the management of healthcare data and streamlined health facility administration.
-            With the help of technologies like .NET, MongoDB, and computer vision, I ensured client satisfaction through effective
-            client management and communication.`,
-        src: "http://localhost:3000/my-portafolio/images/Aurora.png",
+        description: `Directed the development of Aurora Software a web development service, aim to make web design faster and
+        easier but rigorous. By Analyzing and Assessing the areas of opportunities of current state of the art web design
+        technologies, we achieved to create a competitive service. Cooperating closely with other partners today aurora
+        software is integrated in commercial applications.`,
+        src: "images/Aurora.png",
         altText: "Aurora Software logo"
     },
     {
         name: "Quality Assurance QA Intern",
         date: "February 2022 - July 2022",
-        description: `As a QA intern at CTIN, I managed the lifecycle of the music streaming platform Claro Música.
-            This involved executing test cases, documenting results, and diligently tracking defects to resolution, while also
-            gaining experience in DB management and API testing.`,
-        src: "http://localhost:3000/my-portafolio/images/Claro.png",
+        description: `I assumed responsibility for managing the life-cycle of the music streaming platform Claro Música. This involved
+        meticulously executing test cases, documenting results, and diligently tracking defects to resolution. During my
+        stay, I build meaningful and collaborative relationships with colleagues and customers.`,
+        src: "images/Claro.png",
         altText: "CTIN logo"
     },
     {
         name: "Autonomous Vehicles Navigation",
         date: "January 2022 - June 2022",
-        description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
-            tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
-            and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
-        src: "http://localhost:3000/my-portafolio/images/ManchesterRobotics.png",
+        description: `I assemble and program a self-driving vehicle utilizing modern artificial intelligence, machine learning and control
+        tools and techniques inside embedded systems. Demonstrated the usage of autonomously navigation in urban
+        environments. Achieved to represent Mexico City at national level in a Manchester Robotics contest.`,
+        src: "images/ManchesterRobotics.png",
         altText: "Manchester Robotics logo",
         details: (
             <>
-            <div>Give it a look</div>
-            <iframe src="https://drive.google.com/file/d/1d1wYL7YU8aDuPmtEMTO5uE1XCH85C7G1/preview" width="640" height="480" allow="autoplay"></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Z_kojX7WbAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Give it a look to the paper</p>
+            <IFrame src="https://drive.google.com/file/d/1d1wYL7YU8aDuPmtEMTO5uE1XCH85C7G1/preview" width="640" height="480" allow="autoplay"></IFrame>
+            <p>Check out the live performance: </p>
+            <IFrame src="https://www.youtube.com/embed/Z_kojX7WbAo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></IFrame>
             </>
         )
     },
@@ -243,14 +266,14 @@ const experience: ICard[] = [
         description: `I assembled and programmed a self-driving car using AI, machine learning, and modern control
         tools. The car successfully navigated roads and identified traffic signals using neural networks, computer vision,
         and fuzzy control. This project represented Mexico City in a Manchester Robotics contest.`,
-        src: "http://localhost:3000/my-portafolio/images/ManchesterRobotics.png",
+        src: "images/ManchesterRobotics.png",
         altText: "Manchester Robotics logo",
         details: (
             <>
-            <div>Give it a look</div>
-            <iframe src="https://drive.google.com/file/d/17yuFudiAKPRaKJtxOYWRzuk4IvgSPYCY/preview" width="640" height="480" allow="autoplay"></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/JjEkFdsoqdk?si=a7hPN81y3rKfR-Lp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZyDoD3CJKcM?si=LFZ74u3tt7fTAor2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>Give it a look</p>
+            <IFrame src="https://drive.google.com/file/d/17yuFudiAKPRaKJtxOYWRzuk4IvgSPYCY/preview" allow="autoplay"></IFrame>
+            <IFrame src="https://www.youtube.com/embed/JjEkFdsoqdk?si=a7hPN81y3rKfR-Lp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></IFrame>
+            <IFrame src="https://www.youtube.com/embed/ZyDoD3CJKcM?si=LFZ74u3tt7fTAor2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></IFrame>
             </>
         )
     },
@@ -260,10 +283,11 @@ const experience: ICard[] = [
         description: `I designed and tested a digital music and audiovisual content system on an FPGA using microcontrollers
             and microprocessors. The project was presented effectively to Intel and was selected to represent Mexico City on a
             national level.`,
-        src: "http://localhost:3000/my-portafolio/images/Intel.png",
+        src: "images/Intel.png",
         altText: "Intel logo",
         details: <>
-            <iframe src="https://drive.google.com/file/d/1Odtt3lV4vJnmTOb7Yc_hTkK2khG9SpaZ/preview" width="640" height="480" allow="autoplay"></iframe>
+            <p>Give it a look</p>
+            <IFrame src="https://drive.google.com/file/d/1Odtt3lV4vJnmTOb7Yc_hTkK2khG9SpaZ/preview" allow="autoplay"></IFrame>
         </>
     },
     {
@@ -272,15 +296,16 @@ const experience: ICard[] = [
         description: `I developed a smart city system using microcontrollers connected to a cloud-based data hosting service
             for real-time climate data acquisition. This project involved designing an original network architecture and
             integrating sensors and actuators for home automation.`,
-        src: "http://localhost:3000/my-portafolio/images/Cisco.png",
+        src: "images/Cisco.png",
         altText: "Cisco logo",
         details: <>
-        <iframe src="https://drive.google.com/file/d/1T0vO7cwblnvc33QOVw7l7SaqiWyGP4_w/preview" width="640" height="480" allow="autoplay"></iframe>
+            <p>Give it a look</p>
+            <IFrame src="https://drive.google.com/file/d/1T0vO7cwblnvc33QOVw7l7SaqiWyGP4_w/preview" allow="autoplay"></IFrame>
         </>
     }, 
     {
         name: "Teacher Assistant Trinity College",
-        date: "January 2025 - ?",
+        date: "September 2024 - December 2024",
         description: `
         I worked as a Teacher Assistant for Geometry and Group Theory courses at Trinity College. 
         My responsibilities included conducting tutorials to help students grasp complex mathematical concepts, 
@@ -288,14 +313,14 @@ const experience: ICard[] = [
         and providing one-on-one support to students seeking additional help with the coursework. 
         I also assisted in organizing course materials and contributed to creating a collaborative and engaging learning environment.
     `,
-        src: "http://localhost:3000/my-portafolio/images/Trinity.png",
+        src: "images/Trinity.png",
         altText: "Trinity College"
     }
 ];
 
 const AnimatedText = styled.div`${{
     default: {
-        top: "-85px",
+        top: "-60px",
         fontSize: "500px",
         fontFamily: "impact",
         letterSpacing: "50px",
@@ -324,8 +349,8 @@ export const WorkExperience = classy.state.component`work-experience-section`
     return (<>
         <ParallaxProvider>
             <Parallax 
-                speed={-10}
-                scale={[15, 0.5, 'easeOut']} // Start text 20x its size and scale down to normal size
+                speed={-20}
+                scale={[10, 0.5, 'easeOut']} // Start text 20x its size and scale down to normal size
                 style={{ position: "relative" }}
             >
             <AnimatedText>

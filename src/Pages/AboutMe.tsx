@@ -47,17 +47,14 @@ export const AboutMe = classy.component`about-me-section`
     .from(( { id }) => {
         return (
             <DivContainer id={id}>
-                <AboutLetter src="http://localhost:3000/my-portafolio/images/a.png"></AboutLetter>
+                <AboutLetter src="images/a.png"></AboutLetter>
                 <Description>
-                    <p>
-                        I am a <strong>Robotics Engineer</strong> and <strong>IT enthusiast</strong> with a deep passion for <strong>mathematics</strong>, <strong>physics</strong>, and cutting-edge technologies. Currently pursuing an <em>M.Sc. in Quantum Science and Technology</em> at <strong>Trinity College Dublin</strong>, I bring a meticulous problem-solving approach grounded in a strong mathematical and physical foundation. 
-                    </p>
-                    <p>
-                        My curiosity drives me to explore emerging fields like <strong>AI</strong>, <strong>Machine Learning</strong>, <strong>Robotics</strong>, and <strong>Big Data</strong>, all through the lens of their <strong>mathematical</strong> and <strong>physical principles</strong>. I am committed to innovation and eager to make a tangible impact on society through my work in these transformative fields.
-                    </p>
-                    <p>
-                        Despite being deeply immersed in my academic work, I am still as <em>passionate</em> about <strong>mathematics</strong> and <strong>robotics</strong> as I was when I first started. These fields fuel my enthusiasm and provide a sense of purpose as I continue my journey in Quantum Science and Technology.
-                    </p>
+                    <p> <strong>Hey there, and welcome!</strong> I’m a <strong>Physicist</strong>, <strong>Mathematician</strong>, and <strong>Robotics Engineer</strong> with a deep love for all things science and tech. 
+                    Every day feels like an adventure as I dive into new challenges, exploring the unknown and figuring out how things work—or how they *could* work. 
+                    Whether it’s unraveling the secrets of the universe, solving tricky equations, or building robots that can do cool things, I’m all in. </p><p> 
+                    For me, science isn’t just about formulas and theories—it’s about curiosity, creativity, and making a real impact. 
+                    I get a kick out of sharing what I’ve learned and seeing how it can help push the boundaries of what’s possible. 
+                    It’s not just a job; it’s a way of life, and I wouldn’t have it any other way. </p><p> I’m not just here to find opportunities—I’m here to <strong>create them</strong>, <strong>solve problems</strong>, and <strong>build a future</strong> that’s exciting and meaningful. If you’re as passionate about innovation as I am, let’s team up and make something amazing together. Who knows? We might just change the world! </p>
                 </Description>
                 <GameOfLife>
                 </GameOfLife>

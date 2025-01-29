@@ -5,17 +5,18 @@ import { BasicInput } from './BasicInput.tsx';
 
 const UsefulLinks = styled.div`useful-links ${{
     default: {
-        display: "flex",
+        display: "inline-flex",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        width: "100%"
     }
 }}`.getReactComponent()
 
 const Link = styled.a`link ${{
     default: {
-        fontSize: "20px",
+        fontSize: "clamp(10px, 4vw, 20px)",
         fontStyle: "italic",
-        margin: "10px 20px 10px 20px",
+        margin: "clamp(10px, 1vw, 15px)", // Prevents excessive spacing
         transition: "color 0.3s ease", // Smooth color transition on hover
         cursor: "pointer",
         textDecoration: "none", // Remove underline by default
@@ -36,6 +37,27 @@ const FooterText = styled.span`footer-text ${{
         }
     }}`.getReactComponent();
 
+const Title = styled.h2`title ${{
+    default: {
+        fontSize: "clamp(20px, 5vw, 36px)", // Scales the title font dynamically
+        fontWeight: "bold",
+        textAlign: "center", // Center-aligns the title
+        margin: "20px 0", // Adds vertical margin
+        color: "#333", // Choose a suitable color
+    }
+}}`.getReactComponent();
+
+const Description = styled.p`description ${{
+    default: {
+        fontSize: "clamp(14px, 3vw, 18px)", // Dynamically scales the description font
+        fontStyle: "italic",
+        textAlign: "center", // Center-aligns the description
+        color: "#666", // Lighter color for description
+        maxWidth: "80%", // Constrains the width for better layout
+        margin: "30px auto", // Centers the text within the container
+    }
+}}`.getReactComponent();
+    
 const defaultEmail = {
     name: '',
     email: '',
@@ -55,7 +77,7 @@ const ContactSection = classy.state.component`contact`
     };
 
     return (
-        <div style={{ backgroundColor: "white", marginTop: "20px", padding: "20px"}}>
+        <footer id={id} style={{ backgroundColor: "white", marginTop: "20px", padding: "20px"}}>
             <UsefulLinks>
                 <Link 
                     href="https://www.linkedin.com/in/javier-ayala-oropeza-345225210/"
@@ -68,7 +90,7 @@ const ContactSection = classy.state.component`contact`
                     rel="noopener noreferrer"
                 >GitHub</Link>
                 <Link
-                    href="https://drive.google.com/file/d/1ldRIpi0le5BlEuHT4IH2CAi7H2kDqcFO/view?usp=sharing"
+                    href="https://drive.google.com/drive/folders/1_96_Lp6-VRSQjyV5p4fO7ThSJ6wGzazK?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                 >Read.CV</Link>
@@ -80,11 +102,11 @@ const ContactSection = classy.state.component`contact`
                 <Link>Other</Link>
             </UsefulLinks>
             <div className={styles.container}>
-                <h2 className={styles.title}>Get in Touch</h2>
-                <p className={styles.description}>
+                <Title>Get in Touch</Title>
+                <Description>
                     I’d love to hear from you! Whether you have a question, want to collaborate, 
                     or just say hello, feel free to drop me a message below.
-                </p>
+                </Description>
                 <form className={styles.contactForm} onSubmit={handleSubmit}>
                     <BasicInput 
                         labelText={'Name'} 
@@ -117,7 +139,7 @@ const ContactSection = classy.state.component`contact`
             <FooterText>
                 @2025 Javier Ayala Oropeza All Rights Reserved
             </FooterText>
-        </div>
+        </footer>
     );
 }).getReactComponent();
 
