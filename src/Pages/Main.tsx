@@ -1,5 +1,5 @@
 import React from 'react'
-import { classy, Propagate, PropagateContext } from "@javierayala381/aurora-components";
+import { classy } from "@javierayala381/aurora-components";
 import { Header } from '../Components/Header.tsx';
 import { Section } from '../Components/Section.tsx';
 import { HeadSection } from '../Components/HeadSection.tsx';
@@ -15,7 +15,7 @@ interface IMobileContext {
     windowsWidth: number | undefined
 }
 
-const Main = classy.sg.component`layout-component`
+const Main = classy.state.component`layout-component`
     .setStates<IMobileContext>({ 
         isMobile: false,
         windowsWidth: undefined

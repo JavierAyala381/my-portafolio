@@ -3,8 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import { classy, styled } from "@javierayala381/aurora-components";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoClose } from 'react-icons/io5';
-import { IContexts } from '../Pages/Main';
-import { useOnce, useReactTo } from '@javierayala381/aurora-components/dist/Api/stateApi';
+import { useOnce } from '@javierayala381/aurora-components/dist/Api/stateApi';
 
 const HeaderContainer = styled.header`header-container ${{
     default: {
@@ -137,11 +136,11 @@ export const Header = classy.state.component<HeaderArgs>`Header`
         isOpen: true,
         isMobile: false
     })
-    .from<IContexts>(({ react, isMobile }) => {
+    .from(({ react, isMobile }) => {
 
         useEffect(() => 
             react.dispatch("isMobile", isMobile)
-        ,[react, isMobile])
+        ,[isMobile])
 
         const logic = useOnce(() => {
             return {
