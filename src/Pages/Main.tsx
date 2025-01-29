@@ -15,21 +15,17 @@ interface IMobileContext {
     windowsWidth: number | undefined
 }
 
-export interface IContexts {
-    mobile: IMobileContext
-}
-
 const Main = classy.sg.component`layout-component`
-    .createProvider("mobile", { 
+    .setStates<IMobileContext>({ 
         isMobile: false,
         windowsWidth: undefined
     })
-    .from(({ obs })=> {
+    .from(({ react })=> {
 
         useOnce(() => {
             window.addEventListener('resize', () => {
                 const isMobile = window.innerWidth <= 768;
-                obs.context$.mobile.dispatch("state", {
+                react.dispatch("state", {
                     isMobile: isMobile,
                     windowsWidth: window.innerWidth
                 })
@@ -37,9 +33,9 @@ const Main = classy.sg.component`layout-component`
         });
 
         return (
-        <PropagateContext Context$={ obs.context$ } >
+        <>
             <TwoSpheresBackground></TwoSpheresBackground>
-            <Header></Header>
+            <Header isMobile={react.state.isMobile}></Header>
             <HeadSection></HeadSection>
             <Section title={"About Me"} sectionId='about'>
                 <AboutMe></AboutMe>
@@ -53,7 +49,7 @@ const Main = classy.sg.component`layout-component`
             <Section title={"Contact"} sectionId="contact">
                 <ContactSection></ContactSection>
             </Section>
-        </PropagateContext>
+        </>
         )
     }).getReactComponent()
 

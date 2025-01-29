@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { classy, styled } from "@javierayala381/aurora-components";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { IoClose } from 'react-icons/io5';
@@ -128,14 +128,20 @@ interface IHeader {
     isMobile: boolean
 }
 
-export const Header = classy.state.component`Header`
+interface HeaderArgs {
+    isMobile: boolean
+}
+
+export const Header = classy.state.component<HeaderArgs>`Header`
     .setStates<IHeader>({ 
         isOpen: true,
         isMobile: false
     })
-    .from<IContexts>(({ react, obs }) => {
+    .from<IContexts>(({ react, isMobile }) => {
 
-        obs.context$.mobile.state$ && useReactTo(obs.context$.mobile.state$, (s) => react.dispatch("isMobile", s.isMobile),["isMobile"])
+        useEffect(() => 
+            react.dispatch("isMobile", isMobile)
+        ,[react, isMobile])
 
         const logic = useOnce(() => {
             return {
