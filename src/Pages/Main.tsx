@@ -24,7 +24,7 @@ const Main = classy.sg.component`layout-component`
         isMobile: false,
         windowsWidth: undefined
     })
-    .from(({ react, obs })=> {
+    .from(({ obs })=> {
 
         useOnce(() => {
             window.addEventListener('resize', () => {

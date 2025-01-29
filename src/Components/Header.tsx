@@ -135,7 +135,7 @@ export const Header = classy.state.component`Header`
     })
     .from<IContexts>(({ react, obs }) => {
 
-        useReactTo(obs.context$.mobile.state$, (s) => react.dispatch("isMobile", s.isMobile),["isMobile"])
+        obs.context$.mobile.state$ && useReactTo(obs.context$.mobile.state$, (s) => react.dispatch("isMobile", s.isMobile),["isMobile"])
 
         const logic = useOnce(() => {
             return {

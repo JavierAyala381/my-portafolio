@@ -105,7 +105,7 @@ const HeadContainer = styled.div`container ${{
 
 export const HeadSection = classy.state.component`Head-Section`
     .setStates({ clicks: 0 })
-    .from(({ id, react }) => {
+    .from(({ react }) => {
         return (
             <BallsCluster>
                 <HeadContainer>
